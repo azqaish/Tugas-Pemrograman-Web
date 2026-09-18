@@ -7,7 +7,27 @@
 body {
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   line-height: 1.6;
-  color: #726b6b;
-  background-color: #294877;
+  color: #000000;
+  background-color: #a8aeb8;
   padding: 20px;
+}
+
+.showcase-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e1e4e8;
+  max-width: 700px;
+  margin: 40px auto;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.showcase-card.showcase-card--active {
+  border-color: #ffffff;
+  box-shadow: none;
+}
+
+.showcase-card.showcase-card--active .showcase-card__description {
+  font-style: italic;
+  color: #b91818;
 }
