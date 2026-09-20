@@ -79,3 +79,42 @@ body {
     color: #54657a;
 }
 
+.artikel {
+    min-width: 0;
+}
+
+
+.artikel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+
+.post {
+    background: #fff;
+    border: 1px solid #e5eaf1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
+
+.card-body {
+    padding: 20px;
+}
+
+
+.card-title {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+
+.card-text {
+    margin-bottom: 15px;
+    color: #425062;
+}
+
+
