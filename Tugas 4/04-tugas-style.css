@@ -12,7 +12,7 @@ body {
   padding: 0px;
 }
 
-.main-nav{
+.main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,5 +39,43 @@ body {
     max-width: 1200px;
     margin: 30px auto;
     padding: 0 20px;
+}
+
+.sidebar,
+.rightbar {
+    background: #ffffff;
+    border: 1px solid #dfe7f1;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar h2,
+.rightbar h3,
+.artikel h2 {
+    margin-bottom: 16px;
+    color: #0b2265;
+}
+
+.sidebar ul,
+.rightbar ul {
+    list-style: none;
+}
+
+.sidebar li,
+.rightbar li {
+    margin-bottom: 12px;
+}
+
+.sidebar a,
+.rightbar a {
+    text-decoration: none;
+    color: #1c2b4d;
+}
+
+.sidebar p {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: #54657a;
 }
 
