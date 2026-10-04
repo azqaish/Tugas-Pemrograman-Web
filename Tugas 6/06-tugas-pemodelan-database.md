@@ -202,3 +202,16 @@ tanggal_pinjam
 tanggal_jatuh_tempo
 tanggal_kembali
 status
+```
+
+4. Tabel Akhir
+
+a. Tabel mahasiswa
+| Nama Kolom     | Tipe Data    | Constraint  | Keterangan            |
+| -------------- | ------------ | ----------- | --------------------- |
+| nim            | VARCHAR(15)  | PRIMARY KEY | Nomor induk mahasiswa |
+| nama_mahasiswa | VARCHAR(100) | NOT NULL    | Nama mahasiswa        |
+| alamat         | VARCHAR(200) | NOT NULL    | Alamat mahasiswa      |
+| no_telepon     | VARCHAR(15)  | NOT NULL    | Nomor telepon         |
+
+b. Tabel
