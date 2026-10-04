@@ -1,9 +1,24 @@
-1. Desain ERD
+1. Desain ERD 
 
-    mahasiswa (1) $\rightarrow$ (N) peminjaman: Satu mahasiswa dapat melakukan banyak transaksi peminjaman (One-to-Many).
+Sistem E-Library Kampus digunakan untuk mencatat data mahasiswa, buku, penerbit, serta transaksi peminjaman dan pengembalian buku.
 
-    penerbit (1) $\rightarrow$ (N) buku: Satu penerbit dapat menerbitkan banyak judul buku (One-to-Many).
+Entitas yang Digunakan:
 
-    peminjaman (1) $\rightarrow$ (N) detail_peminjaman: Satu transaksi peminjaman dapat memuat beberapa item buku (One-to-Many).
+1. **Mahasiswa**
+2. **Buku**
+3. **Penerbit**
+4. **Transaksi Peminjaman**
 
-    buku (1) $\rightarrow$ (N) detail_peminjaman: Satu buku dapat tercatat di banyak transaksi peminjaman (One-to-Many).
+Relasi Antar Entitas
+
+1. Satu **mahasiswa** dapat melakukan banyak transaksi peminjaman.
+2. Satu **buku** dapat dipinjam berkali-kali melalui transaksi yang berbeda.
+3. Satu **penerbit** dapat menerbitkan banyak buku.
+4. Setiap **buku** diterbitkan oleh satu penerbit.
+5. Setiap **transaksi peminjaman** dilakukan oleh satu mahasiswa untuk satu buku.
+
+| Relasi | Kardinalitas | Keterangan |
+|---|---|---|
+| Mahasiswa - Transaksi Peminjaman | 1 : N | Satu mahasiswa dapat memiliki banyak transaksi |
+| Buku - Transaksi Peminjaman | 1 : N | Satu buku dapat muncul dalam banyak transaksi |
+| Penerbit - Buku | 1 : N | Satu penerbit dapat menerbitkan banyak buku |
