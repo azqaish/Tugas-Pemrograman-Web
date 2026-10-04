@@ -214,4 +214,31 @@ a. Tabel mahasiswa
 | alamat         | VARCHAR(200) | NOT NULL    | Alamat mahasiswa      |
 | no_telepon     | VARCHAR(15)  | NOT NULL    | Nomor telepon         |
 
-b. Tabel
+b. Tabel penerbit
+| Nama Kolom      | Tipe Data    | Constraint  | Keterangan       |
+| --------------- | ------------ | ----------- | ---------------- |
+| id_penerbit     | VARCHAR(10)  | PRIMARY KEY | ID unik penerbit |
+| nama_penerbit   | VARCHAR(100) | NOT NULL    | Nama penerbit    |
+| alamat_penerbit | VARCHAR(200) | NOT NULL    | Alamat penerbit  |
+
+c. Tabel buku
+| Nama Kolom   | Tipe Data    | Constraint  | Keterangan        |
+| ------------ | ------------ | ----------- | ----------------- |
+| isbn         | VARCHAR(20)  | PRIMARY KEY | ISBN buku         |
+| judul_buku   | VARCHAR(200) | NOT NULL    | Judul buku        |
+| tahun_terbit | YEAR         | NOT NULL    | Tahun terbit buku |
+| kategori     | VARCHAR(50)  | NOT NULL    | Kategori buku     |
+| id_penerbit  | VARCHAR(10)  | FOREIGN KEY | ID penerbit       |
+
+d. Tabel transaksi_peminjaman
+| Nama Kolom          | Tipe Data   | Constraint            | Keterangan           |
+| ------------------- | ----------- | --------------------- | -------------------- |
+| id_peminjaman       | VARCHAR(10) | PRIMARY KEY           | ID unik transaksi    |
+| nim                 | VARCHAR(15) | FOREIGN KEY, NOT NULL | NIM mahasiswa        |
+| isbn                | VARCHAR(20) | FOREIGN KEY, NOT NULL | ISBN buku            |
+| tanggal_pinjam      | DATE        | NOT NULL              | Tanggal peminjaman   |
+| tanggal_jatuh_tempo | DATE        | NOT NULL              | Batas pengembalian   |
+| tanggal_kembali     | DATE        | NULL                  | Tanggal pengembalian |
+| status              | VARCHAR(20) | NOT NULL              | Status transaksi     |
+
+5. 
