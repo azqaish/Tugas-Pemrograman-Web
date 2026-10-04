@@ -78,3 +78,127 @@ Primary Key: id_peminjaman
 Foreign Key:
 - nim → mahasiswa.nim
 - isbn → buku.isbn
+
+3. Simulasi Normalisasi 
+
+a. Unnormalized Form (UNF)
+
+| NIM | Nama Mahasiswa | Alamat | Data Peminjaman |
+|---|---|---|---|
+| D121241001 | Rian | Makassar | {ISBN001, Basis Data, Penerbit Informatika, 2025, 01-10-2026, 08-10-2026}, {ISBN002, Pemrograman Web, Andi, 2024, 02-10-2026, 09-10-2026} |
+| D121241002 | Akbar | Gowa | {ISBN001, Basis Data, Penerbit Informatika, 2025, 03-10-2026, 10-10-2026} |
+
+Permasalahan UNF
+
+- Terdapat kelompok data berulang dalam satu sel.
+- Satu mahasiswa dapat memiliki beberapa data buku dalam satu baris.
+- Data mahasiswa dapat ditulis berulang.
+- Data penerbit dan buku juga dapat mengalami redundansi.
+- Struktur belum memenuhi bentuk atomik.
+
+b. First Normal Form (1NF)
+
+Setiap atribut harus memiliki nilai yang atomik dan tidak boleh terdapat kelompok data berulang dalam satu sel. Setiap satu baris mewakili satu transaksi peminjaman.
+
+Tabel 1NF
+
+| NIM | Nama Mahasiswa | Alamat | ISBN | Judul Buku | Tahun Terbit | Nama Penerbit | Tanggal Pinjam | Tanggal Jatuh Tempo | Tanggal Kembali | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| D121241001 | Rian | Makassar | ISBN001 | Basis Data | 2025 | Penerbit Informatika | 01-10-2026 | 08-10-2026 | 07-10-2026 | Dikembalikan |
+| D121241001 | Rian | Makassar | ISBN002 | Pemrograman Web | 2024 | Andi | 02-10-2026 | 09-10-2026 | NULL | Dipinjam |
+| D121241002 | Akbar | Gowa | ISBN001 | Basis Data | 2025 | Penerbit Informatika | 03-10-2026 | 10-10-2026 | NULL | Dipinjam |
+
+c. Second Normal Form (2NF)
+
+Untuk mencapai 2NF:
+
+1. Tabel harus sudah memenuhi 1NF.
+2. Tidak boleh terdapat ketergantungan parsial terhadap sebagian kunci.
+
+Tabel Mahasiswa
+
+| nim | nama_mahasiswa | alamat | no_telepon |
+|---|---|---|---|
+| D121241001 | Rian | Makassar | 081234567890 |
+| D121241002 | Akbar | Gowa | 081298765432 |
+
+**Primary Key:** nim
+
+Tabel Buku
+
+| isbn | judul_buku | tahun_terbit | kategori | id_penerbit |
+|---|---|---:|---|---|
+| ISBN001 | Basis Data | 2025 | Teknologi | P001 |
+| ISBN002 | Pemrograman Web | 2024 | Teknologi | P002 |
+
+**Primary Key:** isbn
+
+**Foreign Key:** id_penerbit
+
+Tabel Penerbit
+
+| id_penerbit | nama_penerbit | alamat_penerbit |
+|---|---|---|
+| P001 | Penerbit Informatika | Bandung |
+| P002 | Andi | Yogyakarta |
+
+**Primary Key:** id_penerbit
+
+Tabel Transaksi Peminjaman
+
+| id_peminjaman | nim | isbn | tanggal_pinjam | tanggal_jatuh_tempo | tanggal_kembali | status |
+|---|---|---|---|---|---|---|
+| PJ001 | D121241001 | ISBN001 | 2026-10-01 | 2026-10-08 | 2026-10-07 | Dikembalikan |
+| PJ002 | D121241001 | ISBN002 | 2026-10-02 | 2026-10-09 | NULL | Dipinjam |
+| PJ003 | D121241002 | ISBN001 | 2026-10-03 | 2026-10-10 | NULL | Dipinjam |
+
+**Primary Key:** id_peminjaman
+
+**Foreign Key:**
+- nim → mahasiswa.nim
+- isbn → buku.isbn
+
+d. Third Normal Form (3NF)
+
+Untuk mencapai 3NF:
+
+1. Tabel harus sudah memenuhi 2NF.
+2. Tidak boleh terdapat ketergantungan transitif.
+3. Atribut bukan kunci harus bergantung langsung pada Primary Key.
+
+Skema Akhir 3NF
+
+```text
+mahasiswa
+---------
+nim (PK)
+nama_mahasiswa
+alamat
+no_telepon
+
+
+penerbit
+--------
+id_penerbit (PK)
+nama_penerbit
+alamat_penerbit
+
+
+buku
+----
+isbn (PK)
+judul_buku
+tahun_terbit
+kategori
+id_penerbit (FK)
+
+
+transaksi_peminjaman
+--------------------
+id_peminjaman (PK)
+nim (FK)
+isbn (FK)
+tanggal_pinjam
+tanggal_jatuh_tempo
+tanggal_kembali
+status
