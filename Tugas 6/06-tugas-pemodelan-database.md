@@ -241,4 +241,42 @@ d. Tabel transaksi_peminjaman
 | tanggal_kembali     | DATE        | NULL                  | Tanggal pengembalian |
 | status              | VARCHAR(20) | NOT NULL              | Status transaksi     |
 
-5. 
+5. Visualisasi
+
+```mermaid
+erDiagram
+    MAHASISWA ||--o{ TRANSAKSI_PEMINJAMAN : melakukan
+    BUKU ||--o{ TRANSAKSI_PEMINJAMAN : dipinjam
+    PENERBIT ||--o{ BUKU : menerbitkan
+
+    MAHASISWA {
+        VARCHAR(15) nim PK
+        VARCHAR(100) nama_mahasiswa
+        VARCHAR(200) alamat
+        VARCHAR(15) no_telepon
+    }
+
+    PENERBIT {
+        VARCHAR(10) id_penerbit PK
+        VARCHAR(100) nama_penerbit
+        VARCHAR(200) alamat_penerbit
+    }
+
+    BUKU {
+        VARCHAR(20) isbn PK
+        VARCHAR(200) judul_buku
+        YEAR tahun_terbit
+        VARCHAR(50) kategori
+        VARCHAR(10) id_penerbit FK
+    }
+
+    TRANSAKSI_PEMINJAMAN {
+        VARCHAR(10) id_peminjaman PK
+        VARCHAR(15) nim FK
+        VARCHAR(20) isbn FK
+        DATE tanggal_pinjam
+        DATE tanggal_jatuh_tempo
+        DATE tanggal_kembali
+        VARCHAR(20) status
+    }
+```
