@@ -53,3 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+try {
+    $daftarPesan = $guestBook->ambilSemua(50);
+} catch (PDOException $ex) {
+    error_log('GuestBook ambil error: ' . $ex->getMessage());
+    $daftarPesan = [];
+    $errors['umum'] = 'Daftar pesan tidak dapat dimuat saat ini.';
+}
