@@ -47,4 +47,15 @@ class GuestBook {
 
         return $errors;
     }
+
+    public function simpan(string $nama, string $email, string $pesan): bool {
+        $sql = "INSERT INTO buku_tamu (nama, email, pesan)
+                VALUES (:nama, :email, :pesan)";
+        $stmt = $this->getConnection()->prepare($sql);
+        return $stmt->execute([
+            'nama'  => $nama,
+            'email' => $email,
+            'pesan' => $pesan,
+        ]);
+    }
 }
